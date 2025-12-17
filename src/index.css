@@ -3,4 +3,29 @@
     padding: 0;
     box-sizing: border-box;
 }
+body{
+    font-family: "Inter";
+    background-color: #0A202D;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
 
+.main{
+    margin: 90px 0 ;
+    width:600px;
+    height:600px;
+    background-color: white;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.die-component{
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    column-gap:2rem;
+    row-gap: 1rem;
+}
