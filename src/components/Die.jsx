@@ -1,5 +1,5 @@
 export default function Die(props){
     return(
-        <button>{props.value}</button>
+        <button className="dices">{props.value}</button>
     )
 }

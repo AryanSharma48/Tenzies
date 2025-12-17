@@ -1,29 +1,32 @@
+import { useState } from "react"
 import Die from "./Die"
 
 export default function Main(){
 
-    let value 
-    function valueGenerate(){
-        const dieArr = [1,2,3,4,5,6]
-        value = dieArr[Math.floor(Math.random() * dieArr.length )]
-        console.log(value)
+    const [ arrDie , setArrDie ] = useState(generateAllNewDice())
+
+
+
+    function generateAllNewDice(){
+        const value = []
+        for(let i = 0 ; i <= 9 ; i++ ){
+            value[i] = Math.floor(Math.random() * 6) + 1 
+        }
+           return value
     }
-    valueGenerate()
+
+    const diceElements = arrDie.map(num => <Die value = {num} />)
+
+    function rollDie (){
+        setArrDie(generateAllNewDice)
+    }
 
     return(
         <main className="main">
             <div className="die-component">
-                <Die value={1} />
-                <Die value={2} />
-                <Die value={3} />
-                <Die value={4} />
-                <Die value={5} />
-                <Die value={2} />
-                <Die value={3} />
-                <Die value={2} />
-                <Die value={4} />
-                <Die value={2} />
+                {diceElements}
             </div>
+            <button className="roll-dice" onClick={rollDie}>Roll Dice</button>
         </main>
     )
 }

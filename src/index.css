@@ -1,31 +1,58 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-body{
+
+body {
     font-family: "Inter";
     background-color: #0A202D;
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
 }
 
-.main{
-    margin: 90px 0 ;
-    width:600px;
-    height:600px;
-    background-color: white;
-    border-radius: 5px;
+.main {
+    margin: 90px 0;
+    width: 600px;
+    height: 600px;
+    background-color: #F2F2F2;
+    border-radius: 8px;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
+    flex-direction: column;
 }
 
-.die-component{
+.die-component {
     display: grid;
-    grid-template-columns: repeat(5,1fr);
-    column-gap:2rem;
-    row-gap: 1rem;
+    grid-template-columns: repeat(5, 1fr);
+    column-gap: 2.3rem;
+    row-gap: 1.7rem;
+}
+
+.dices {
+    font-family: "inter";
+    padding: 15px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: bolder;
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0px 2px 2px rgb(0, 0, 0,0.15);
+    border: none;
+}
+
+.roll-dice{
+
+    border-radius: 5px;
+    border: none;
+    color: white;
+    background-color: red;
+    font-family: inter;
+    font-weight: bold;
+    padding: 10px 15px;
+    font-size: 1rem;
+    cursor: pointer;
 }
