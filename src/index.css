@@ -75,5 +75,8 @@ body {
     font-size: 1.1rem;
 }
 
-
+.roll-dice:focus{
+    border: 2px solid rgb(80, 8, 8);
+    
+}
 

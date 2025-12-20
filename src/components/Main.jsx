@@ -1,13 +1,14 @@
-import { useState } from "react"
+import { useEffect, useState , useRef } from "react"
 import Die from "./Die"
 import { nanoid } from "nanoid"
 import ReactConfetti from "react-confetti"
 
 export default function Main(){
-    const [ arrDie , setArrDie ] = useState(generateAllNewDice())
+    const [ arrDie , setArrDie ] = useState(() => generateAllNewDice())
 
-    let gameWon;
-    
+    const buttonRef = useRef(null)
+
+    let gameWon;  
     if(    
         arrDie.every(die => die.isHeld) && 
         arrDie.every(die => die.value === arrDie[0].value )
@@ -17,7 +18,11 @@ export default function Main(){
         gameWon = false
     }
 
-    
+    useEffect(() => {
+        if(gameWon){
+            buttonRef.current.focus()
+        }
+    },[gameWon])
 
     function generateAllNewDice(){
         return new Array(10)
@@ -27,15 +32,18 @@ export default function Main(){
                 id : nanoid()
             }))
     }
-
-    
+  
     function rollDie (){
+        if(!gameWon){
         setArrDie(prevDice => prevDice.map(item => {
             return item.isHeld ? 
                 item : 
                 {...item , value : Math.ceil(Math.random() * 6) }
                 
         }))
+        }else{
+            setArrDie(generateAllNewDice())
+        }
 
     }
 
@@ -45,7 +53,6 @@ export default function Main(){
                 { ...item , isHeld : !item.isHeld} : item
         }))
     }
-
 
     const diceElements = arrDie.map(dieObj => 
         <Die 
@@ -57,8 +64,6 @@ export default function Main(){
             
         />)
 
-    
-
     return(
         <main className="main">
             { gameWon && <ReactConfetti />}
@@ -69,7 +74,7 @@ export default function Main(){
             <div className="die-component">
                 {diceElements}
             </div>
-            <button className="roll-dice" onClick={rollDie}>{gameWon ? "New Dice" : "Roll Dice"}</button>
+            <button ref={buttonRef} className="roll-dice" onClick={rollDie}>{gameWon ? "New Game" : "Roll Dice"}</button>
         </main>
     )
 }
